@@ -1,0 +1,47 @@
+body{
+	background-color: #f3f3f3;
+	background-size: contain;
+}
+
+body .article {
+	color:white;
+}
+
+.blocktext {
+	margin-left: 40%;
+    margin-right: auto;
+    width: 6em;
+    background-color: #2B403D
+}/*
+body
+{
+  padding: 30px;
+  background-color: #fcfcfc;
+}
+*/
+.outer-div
+{
+  padding: 30px;
+  background-color: #f3f3f3;
+}
+.inner-div
+{
+  margin: auto;
+  width: 70%;
+  height: auto;
+  background-color: #2B403D;
+  border-radius: 10px;
+  color:white;
+  text-align: center;
+}
+.inner-div .title {
+	margin: :5px;
+	text-decoration: bold;
+	font-size: 40px;
+	font-family: 'FastForward';
+}
+
+@font-face {
+    font-family: FastForward;
+    src: url('css/FastForward.ttf');
+}
