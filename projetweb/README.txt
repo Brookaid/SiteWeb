@@ -9,3 +9,15 @@ taper standard js , install, follow procedure
 install package control
 -> sublimelinter
 -> sublimeLinter-contrib-standard
+
+
+
+Ressources sur le web:
+https://github.com/Musinux/links-about-web-programming
+
+Contraintes de projet:
+    https://github.com/Strift/esiea-web-programming
+
+
+
+https://github.com/Musinux/node-vue-boilerplate
