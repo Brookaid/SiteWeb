@@ -34,10 +34,10 @@ body
   color:white;
   text-align: center;
 }
-.inner-div .title {
+.maintitle {
 	margin: :5px;
 	text-decoration: bold;
-	font-size: 40px;
+	font-size: 10px;
 	font-family: 'FastForward';
 }
 
