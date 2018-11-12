@@ -3,8 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-   const articles = JSON.parse(fs.readFileSync('articles.json'));
-  res.send(articles);
+  res.render('index', { title: 'Express' });
 });
 
 module.exports = router;
