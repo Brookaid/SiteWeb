@@ -12,7 +12,9 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // serve front-end application
-app.use('/', serveStatic(path.join(__dirname, '../..', 'chemin/racine/html')));
+
+
+app.use(express.static(path.join(__dirname,)
 
 // import controllers
 const fonctions = require('./functions');
