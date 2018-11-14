@@ -4742,7 +4742,7 @@
         var animate = $$$1(this._element).hasClass(ClassName.FADE) ? ClassName.FADE : '';
 
         if (this._isShown && this._config.backdrop) {
-          this._backdrop = document.createElement('div');
+          this._backdrop = document.createElement('dist');
           this._backdrop.className = ClassName.BACKDROP;
 
           if (animate) {
@@ -4886,7 +4886,7 @@
 
       _proto._getScrollbarWidth = function _getScrollbarWidth() {
         // thx d.walsh
-        var scrollDiv = document.createElement('div');
+        var scrollDiv = document.createElement('dist');
         scrollDiv.className = ClassName.SCROLLBAR_MEASURER;
         document.body.appendChild(scrollDiv);
         var scrollbarWidth = scrollDiv.getBoundingClientRect().width - scrollDiv.clientWidth;
@@ -5030,7 +5030,7 @@
     };
     var Default = {
       animation: true,
-      template: '<div class="tooltip" role="tooltip">' + '<div class="arrow"></div>' + '<div class="tooltip-inner"></div></div>',
+      template: '<dist class="tooltip" role="tooltip">' + '<dist class="arrow"></dist>' + '<dist class="tooltip-inner"></dist></dist>',
       trigger: 'hover focus',
       title: '',
       delay: 0,
@@ -5682,7 +5682,7 @@
       placement: 'right',
       trigger: 'click',
       content: '',
-      template: '<div class="popover" role="tooltip">' + '<div class="arrow"></div>' + '<h3 class="popover-header"></h3>' + '<div class="popover-body"></div></div>'
+      template: '<dist class="popover" role="tooltip">' + '<dist class="arrow"></dist>' + '<h3 class="popover-header"></h3>' + '<dist class="popover-body"></dist></dist>'
     });
 
     var DefaultType = _objectSpread({}, Tooltip.DefaultType, {

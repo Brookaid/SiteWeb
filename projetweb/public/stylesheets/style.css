@@ -6,3 +6,6 @@ body {
 a {
   color: #00B7FF;
 }
+dialog {
+  width: 500px;
+}
