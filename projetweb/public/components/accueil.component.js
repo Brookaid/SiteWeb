@@ -10,7 +10,7 @@ const template = `
 			<div class="title">
 				LA COPINE DE THAUVIN
 			</div>
-			<img src="images/charlotte-pirroni.jpg">
+			<img src="images/icons8-football-100.png">
 			<br>
 			Charlotte Pirroni, née le 17 août 1993 à Monaco, est un mannequin et une chroniqueuse française, élue Miss Côte-d'Azur en 2014 et deuxième dauphine de Miss France 2015.
 			Charlotte Pirroni est la petite-fille de Louis Pirroni, ex-entraîneur de l'AS-Monaco.

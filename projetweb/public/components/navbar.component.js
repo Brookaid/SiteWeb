@@ -1,7 +1,7 @@
 ;(function () {
   'use strict'
 
-  const template = `
+  const template =`
 <section id="navbar">
   <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#82BFB6;">
   		<img src="images/icons8-football-100.png" width="45px">
@@ -25,9 +25,13 @@
 		    </li>
 		</ul>
 		<ul class="navbar-nav ml-auto">
+		    <form title="test">
+		        <input type="text" minlength="4" maxlength="8" size="10">
+		    </form>
 		   <li class="nav-item">
-		      <a class="nav-link" href="">Connexion</a>
+		      <a href="javascript:openbox('test',0)">Connexion</a>
 		   </li>
+
 		</ul>
 	</nav>
 </section>
