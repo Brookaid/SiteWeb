@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml">
   <head>
-      <link rel="stylesheet" href="./stylesheet.css">
-      <link rel="stylesheet" href="stylesheets/css/bootstrap.css">
 
-    <title>Mes couilles en short</title>
+      <link rel="stylesheet" href="stylesheets/css/bootstrap.min.css">
+      <link rel="stylesheet" href="stylesheets/stylesheet.css">
+      <link rel="stylesheet" href="stylesheets/style.css">
+      <title>Mes couilles en short</title>
   </head>
   <body>
   <main id="app">
@@ -14,8 +15,33 @@
           v-on:pl="currentPage = 'pl'"
           v-on:bundes="currentPage = 'bundes'"
           v-on:liga="currentPage = 'liga'"
+          v-on:register="currentPage = 'register'"
       >
       </navbar>
+      <div id="id01" class="modal-test">
+          <span onclick="document.getElementById('id01').style.display='none'"
+            class="close" title="Close Modal">&times;</span>
+          <!-- Modal Content -->
+          <form class="modal-content animate" action="/action_page.php">
+              <div class="container">
+                  <label for="uname"><b>Pseudonyme</b></label>
+                  <input type="text" placeholder="Entrez Pseudonyme" name="uname" required>
+
+                  <label for="psw"><b>Mot de passe</b></label>
+                  <input type="password" placeholder="Entrez Mot de passe" name="psw" required>
+
+                  <button type="submit">S'identifier</button>
+                  <label>
+                      <input type="checkbox" checked="checked" name="remember"> Se souvenir de moi
+                  </label>
+              </div>
+
+              <div class="container" style="background-color:#f1f1f1">
+                  <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Annuler</button>
+                  <span class="psw"><a onclick="document.getElementById('id01').style.display='none'" href="#" v-on:click="currentPage = 'register'">Pas encore inscrit(e) ?</a></span>
+              </div>
+          </form>
+      </div>
 
     <section v-if="currentPage === 'accueil'" id="accueil">
           <accueil></accueil>
@@ -30,38 +56,31 @@
           <bundes></bundes>
 	</section>
       <!-- The Modal -->
-      <div id="id01" class="modal">
-          <span onclick="document.getElementById('id01').style.display='none'"
-            class="close" title="Close Modal">&times;</span>
 
-          <!-- Modal Content -->
-          <form class="modal-content animate" action="/action_page.php">
-              <div class="container">
-                  <label for="uname"><b>Username</b></label>
-                  <input type="text" placeholder="Enter Username" name="uname" required>
 
-                  <label for="psw"><b>Password</b></label>
-                  <input type="password" placeholder="Enter Password" name="psw" required>
-
-                  <button type="submit">Login</button>
-                  <label>
-                      <input type="checkbox" checked="checked" name="remember"> Remember me
-                  </label>
-              </div>
-
-              <div class="container" style="background-color:#f1f1f1">
-                  <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-                  <span class="psw">Forgot <a href="#">password?</a></span>
-              </div>
-          </form>
-      </div>
+      <section v-else-if="currentPage === 'register'" id="register">
+          <register></register>
+	</section>
   </main>
+
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script>
   <script src="components/navbar.component.js"></script>
   <script src="components/accueil.component.js"></script>
   <script src="components/ligue1.component.js"></script>
   <script src="components/pl.component.js"></script>
   <script src="components/bundes.component.js"></script>
+  <script src="components/register.component.js"></script>
   <script src="indexJS.js"></script>
+  <script>
+        var modal = document.getElementById('id01');
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+  </script>
   </body>
 </html>
