@@ -24,14 +24,10 @@
 		       <a class="nav-link"  href="#liga">Liga BBVA</a>
 		    </li>
 		</ul>
-		<ul class="navbar-nav ml-auto">
-		    <form title="test">
-		        <input type="text" minlength="4" maxlength="8" size="10">
-		    </form>
-		   <li class="nav-item">
-		      <a href="javascript:openbox('test',0)">Connexion</a>
+		<ul class="navbar-nav ml-auto" >
+		   <li>
+                <button onclick="document.getElementById('id01').style.display='block'">Login</button>
 		   </li>
-
 		</ul>
 	</nav>
 </section>

@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-  	<link rel="stylesheet" href="stylesheets/css/bootstrap.css">
-  	<link rel="stylesheet" href="./stylesheet.css">
-    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.css">
+      <link rel="stylesheet" href="./stylesheet.css">
+      <link rel="stylesheet" href="stylesheets/css/bootstrap.css">
 
     <title>Mes couilles en short</title>
   </head>
@@ -30,7 +29,32 @@
 	<section v-else-if="currentPage === 'bundes'" id="Bundes">
           <bundes></bundes>
 	</section>
+      <!-- The Modal -->
+      <div id="id01" class="modal">
+          <span onclick="document.getElementById('id01').style.display='none'"
+            class="close" title="Close Modal">&times;</span>
 
+          <!-- Modal Content -->
+          <form class="modal-content animate" action="/action_page.php">
+              <div class="container">
+                  <label for="uname"><b>Username</b></label>
+                  <input type="text" placeholder="Enter Username" name="uname" required>
+
+                  <label for="psw"><b>Password</b></label>
+                  <input type="password" placeholder="Enter Password" name="psw" required>
+
+                  <button type="submit">Login</button>
+                  <label>
+                      <input type="checkbox" checked="checked" name="remember"> Remember me
+                  </label>
+              </div>
+
+              <div class="container" style="background-color:#f1f1f1">
+                  <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                  <span class="psw">Forgot <a href="#">password?</a></span>
+              </div>
+          </form>
+      </div>
   </main>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script>
   <script src="components/navbar.component.js"></script>
@@ -39,10 +63,5 @@
   <script src="components/pl.component.js"></script>
   <script src="components/bundes.component.js"></script>
   <script src="indexJS.js"></script>
-  <script
-          src="https://code.jquery.com/jquery-3.1.1.min.js"
-          integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-          crossorigin="anonymous"></script>
-  <script src="semantic/dist/semantic.js"></script>
   </body>
 </html>
