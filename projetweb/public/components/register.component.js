@@ -14,22 +14,18 @@ const template = `
             <hr>
         
             <label for="pseudo"><b>Pseudo</b></label>
-            <input type="text" placeholder="Entrez Pseudo" name="pseudo" required>
+            <input type="text" placeholder="Entrez Pseudo"  v-model="user.username" name="pseudo" required>
         
             <label for="pswd"><b>Mot de passe</b></label>
-            <input type="password" placeholder="Entrer Mot de passe" name="pswd" required>
+            <input type="password" placeholder="Entrer Mot de passe" v-model="user.password" name="pswd" required>
         
             <label for="pswd-repeat"><b>Répéter Mot de passe</b></label>
-            <input type="password" placeholder="Répéter Mot de passe" name="pswd-repeat" required>
-        
-            <label>
-              <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Se souvenir de moi
-            </label>
+            <input type="password" placeholder="Répéter Mot de passe" v-model="user.repeatpassword" name="pswd-repeat" required>
         
             <p>En créeant un compte vous donnez votre accord à notre <a href="#" style="color:dodgerblue">Politique de confidentialité et modalités</a>.</p>
         
             <div class="clearfix">
-              <button type="submit" class="signupbtn">S'enregistrer</button>
+              <button  @click="$emit('inscriptionuser', user)" type="submit" class="signupbtn">S'enregistrer</button>
             </div>
           </div>
         </form>
@@ -38,6 +34,54 @@ const template = `
 </section>
 `
 Vue.component('register', {
-    template: template
+    template: template,
+    data: function () {
+			return {
+				user: {
+					'username': '',
+					'password': '',
+					'repeatpassword': ''
+				}
+			}
+		},
   })
+Vue.component('connexion-form', {
+			template: `
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h1 class="modal-title">Connexion </h1>
+                        </div>
+                        <div class="panel-body">
+                            <form>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label>Login</label>
+                                        <input v-model ="user.username" type="text" placeholder="Login">
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label>Mot de passe</label>
+                                        <input v-model ="user.password" type="password" placeholder="Mot de passe">
+                                    </div>
+                                </div>
+                
+                            </form>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <button @click="$emit('connexion', user)" class="btn btn-primary">Connexion</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+    `,
+			data: function () {
+				return {
+					user: {
+						'username': '',
+						'password': ''
+					}
+				}
+			},
+		}
+	)
 })()

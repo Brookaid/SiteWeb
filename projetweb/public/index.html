@@ -5,6 +5,7 @@
       <link rel="stylesheet" href="stylesheets/css/bootstrap.min.css">
       <link rel="stylesheet" href="stylesheets/stylesheet.css">
       <link rel="stylesheet" href="stylesheets/style.css">
+      <script src="https://npmcdn.com/axios/dist/axios.min.js"></script>
       <title>Mes couilles en short</title>
   </head>
   <body>
@@ -16,13 +17,17 @@
           v-on:bundes="currentPage = 'bundes'"
           v-on:liga="currentPage = 'liga'"
           v-on:register="currentPage = 'register'"
+          v-on:change-page="changePage($event)"
+          v-bind:mon_user="mon_user"
       >
       </navbar>
+
+      <!--lightbox login -->
       <div id="id01" class="modal-test">
           <span onclick="document.getElementById('id01').style.display='none'"
             class="close" title="Close Modal">&times;</span>
           <!-- Modal Content -->
-          <form class="modal-content animate" action="/action_page.php">
+          <form class="modal-content animate" action="">
               <div class="container">
                   <label for="uname"><b>Pseudonyme</b></label>
                   <input type="text" placeholder="Entrez Pseudonyme" name="uname" required>
@@ -38,7 +43,7 @@
 
               <div class="container" style="background-color:#f1f1f1">
                   <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Annuler</button>
-                  <span class="psw"><a onclick="document.getElementById('id01').style.display='none'" href="templates/test.html" v-on:click="currentPage = 'register'">Pas encore inscrit(e) ?</a></span>
+                  <span class="psw"><a onclick="document.getElementById('id01').style.display='none'" href="#" v-on:click="currentPage = 'register'">Pas encore inscrit(e) ?</a></span>
               </div>
           </form>
       </div>
@@ -55,22 +60,65 @@
 	<section v-else-if="currentPage === 'bundes'" id="Bundes">
           <bundes></bundes>
 	</section>
-      <!-- The Modal -->
 
-
-      <section v-else-if="currentPage === 'register'" id="register">
+    <section v-else-if="currentPage === 'register'" id="register">
           <register></register>
 	</section>
+
+    <section v-else-if="currentPage === 'listeDesArticles' || currentPage === 'index'" id="listeDesArticles">
+        <div class="form-group">
+            <input v-model="search" type="text" class="form-control" placeholder="Search">
+        </div>
+        <div class="row" v-for="i in Math.ceil(filteredList.length / 3)">
+            <article-item
+                    v-for="article in filteredList.slice((i - 1) * 3, i * 3)"
+                    v-bind:articleitem="article"
+                    v-bind:mon_user="mon_user"
+                    v-on:event-article="viewArticle(article.index)"
+                    v-on:edit-article="editArticle(article.index)"
+                    v-on:delete-article="deleteArticle(article)"
+                    v-on:logout="logout($event)"
+            >
+            </article-item>
+        </div>
+    </section>
+
+    <section v-if="currentPage === 'connexion'" id="connexion">
+        <div v-if="error.message!=''" class="alert alert-danger" role="alert">
+            <strong>{{ error.message }}</strong>
+        </div>
+
+        <div v-if="success.message!=''" class="alert alert-success" role="alert">
+            <strong>{{ success.message }}</strong>
+        </div>
+
+        <connexion-form
+                v-on:connexion="connexion($event)">
+        </connexion-form>
+    </section>
+    <section v-if="currentPage === 'inscription'" id="inscription">
+        <div v-if="error.message!=''" class="alert alert-danger" role="alert">
+            <strong>{{ error.message }}</strong>
+        </div>
+
+        <div v-if="success.message!=''" class="alert alert-success" role="alert">
+            <strong>{{ success.message }}</strong>
+        </div>
+        <inscription-form
+                v-on:inscriptionuser="inscriptionuser($event)"
+        >
+        </inscription-form>
+    </section>
   </main>
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
   <script src="components/navbar.component.js"></script>
   <script src="components/accueil.component.js"></script>
-  <script src="components/ligue1.component.js"></script>
-  <script src="components/pl.component.js"></script>
-  <script src="components/bundes.component.js"></script>
+  <script src="components/other.component.js"></script>
   <script src="components/register.component.js"></script>
+
   <script src="indexJS.js"></script>
   <script>
         var modal = document.getElementById('id01');
