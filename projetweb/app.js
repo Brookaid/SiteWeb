@@ -24,15 +24,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(expressSession({secret: 'max', saveUninitialized: false, resave: false}));
 
-app.use(function (req, res, next) {
-  var err = new Error('Not Found')
-  err.status = 404
-  next(err)
-})
-
-app.use('/', index);
+//routes
+app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/articles', usersRouter);
+app.use('/articles', articlesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

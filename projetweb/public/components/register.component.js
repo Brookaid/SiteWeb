@@ -29,7 +29,6 @@ const template = `
             <p>En créeant un compte vous donnez votre accord à notre <a href="#" style="color:dodgerblue">Politique de confidentialité et modalités</a>.</p>
         
             <div class="clearfix">
-              <button type="button" class="cancelbtn">Annuler</button>
               <button type="submit" class="signupbtn">S'enregistrer</button>
             </div>
           </div>

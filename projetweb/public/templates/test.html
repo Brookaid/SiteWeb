@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+
+</section>
+<script>
+
+var section = document.querySelector('section');
+var requestURL = 'users.json';
+var request = new XMLHttpRequest();
+
+request.open('GET', requestURL);
+request.responseType = 'json';
+request.send();
+
+request.onload = function() {
+  var connexion = request.response;
+  showUser(connexion);
+}
+
+function showUser(jsonObj) {
+    var users = jsonObj['users'];
+
+    for (var i = 0; i < users.length; i++) {
+        var myArticle = document.createElement('article');
+        var user = document.createElement('p');
+        var pwd = document.createElement('p');
+        user.textContent = users[i].username;
+        pwd.textContent = users[i].pwd;
+
+        myArticle.appendChild(user);
+        myArticle.appendChild(pwd);
+
+        section.appendChild(myArticle);
+    }
+}
+</script>
+</body>
+</html>
