@@ -5,7 +5,7 @@ const listArticles = require('../db/articles.json')
 const users = require('../db/users.json')
 const fs = require('fs')
 
-//const USERS_PATH = 'db/users.json'
+const USERS_PATH = 'db/users.json'
 
 
 /* GET home page. */
@@ -102,4 +102,35 @@ router.post('/login', (req, res, next) => {
     //console.log('message: ' + message)
 
 })
+
+router.post('/register', (req, res, next) => {
+    var message = 'Votre inscription s\'est bien déroulée'
+    for (userDb of users) {
+        if (userDb.username === req.body.username) { /*  A modifier */
+            message = 'Attention, l\'utilisateur existe déjà !'
+        }
+    }
+
+    if (message === 'Votre inscription s\'est bien déroulée') {
+
+        let hash = bcrypt.hashSync(req.body.password, 10)
+        // Store hash in database
+        const userObject = {username: req.body.username, password: hash}
+        users.push(userObject)
+
+        // Write into Json File
+        fs.writeFile(USERS_PATH, JSON.stringify(users), function (err) {
+            if (err) return console.log(err)
+
+            console.log('W : User added to jsonfile')
+        })
+
+        //console.log(users);
+        res.status(200).send(message)
+    } else {
+        res.status(201).send(message)
+    }
+
+})
+
 module.exports = router

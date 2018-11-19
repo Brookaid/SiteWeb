@@ -48,6 +48,32 @@
           </form>
       </div>
 
+     <section v-if="currentPage === 'viewArticle'" id="viewArticle">
+        <article-view
+                v-bind:articleitem="ArticlesList[currentArticleId]"
+                v-on:change-page="changePage($event)"
+                v-bind:mon_user="mon_user"
+                v-on:delete-article="deleteArticle(articlesList[currentArticleId])"
+        >
+        </article-view>
+    </section>
+
+    <section v-if="currentPage === 'addArticle'" id="addArticle">
+        <article-add
+                v-on:change-page="changePage($event)"
+                v-on:create-article="createArticle($event)"
+        >
+        </article-add>
+    </section>
+    <section v-if="currentPage === 'editArticle'" id="editArticle">
+        <article-edit
+                v-bind:articleitem="articlesList[currentArticleId]"
+                v-on:change-page="changePage($event)"
+                v-on:modify-article="modifyArticle($event)"
+        >
+        </article-edit>
+    </section>
+
     <section v-if="currentPage === 'accueil'" id="accueil">
           <accueil></accueil>
 	</section>
@@ -118,9 +144,8 @@
   <script src="components/accueil.component.js"></script>
   <script src="components/other.component.js"></script>
   <script src="components/register.component.js"></script>
-
   <script src="indexJS.js"></script>
-  <script>
+  <!--<script>
         var modal = document.getElementById('id01');
 
         // When the user clicks anywhere outside of the modal, close it
@@ -129,6 +154,6 @@
                 modal.style.display = "none";
             }
         }
-  </script>
+  </script>-->
   </body>
 </html>

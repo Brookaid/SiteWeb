@@ -38,9 +38,9 @@ app = new Vue({
 
           },
           methods: {
-              close: function () {
+              /*close: function () {
                   this.success = false
-              },
+              },*/
               changePage(page) {
                   this.currentPage = page
               },
@@ -55,7 +55,7 @@ app = new Vue({
                   this.changePage('editArticle')
               },
               createArticle(article) {
-                  if (article.Title == '') {
+                  if (article.titre == '') {
                       alert('Veuillez indiquer le titre')
                   }
                   else {
@@ -89,7 +89,7 @@ app = new Vue({
 
                   console.log(article)
 
-                  if (article.Title == '') {
+                  if (article.titre == '') {
                       alert('Veuillez indiquer le titre')
                   }
                   else {
