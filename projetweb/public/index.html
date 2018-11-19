@@ -19,6 +19,9 @@
           v-on:register="currentPage = 'register'"
           v-on:change-page="changePage($event)"
           v-bind:mon_user="mon_user"
+          v-on:logout="logout($event)"
+          v-bind:articleslist="articlesList"
+
       >
       </navbar>
 
@@ -75,23 +78,42 @@
     </section>
 
     <section v-if="currentPage === 'accueil'" id="accueil">
-          <accueil></accueil>
+          <accueil
+                v-bind:articleslist="articlesList"
+          >
+          </accueil>
 	</section>
     <section v-else-if="currentPage === 'ligue1'" id="ligue1">
-          <ligue1></ligue1>
+          <ligue1
+                v-bind:articleslist="articlesList"
+          >
+          </ligue1>
 	</section>
 	<section v-else-if="currentPage === 'pl'" id="pl">
-          <pl></pl>
+          <pl
+                v-bind:articleslist="articlesList"
+          >
+          </pl>
 	</section>
 	<section v-else-if="currentPage === 'bundes'" id="Bundes">
-          <bundes></bundes>
+          <bundes
+               v-bind:articleslist="articlesList"
+          >
+          </bundes>
+	</section>
+
+    <section v-else-if="currentPage === 'liga'" id="liga">
+          <liga
+               v-bind:articleslist="articlesList"
+          >
+          </liga>
 	</section>
 
     <section v-else-if="currentPage === 'register'" id="register">
           <register></register>
 	</section>
 
-    <section v-else-if="currentPage === 'listeDesArticles' || currentPage === 'index'" id="listeDesArticles">
+    <section v-else-if="currentPage === 'listeDesArticles' || currentPage === 'accueil'" id="listeDesArticles">
         <div class="form-group">
             <input v-model="search" type="text" class="form-control" placeholder="Search">
         </div>
@@ -106,30 +128,17 @@
                     v-on:logout="logout($event)"
             >
             </article-item>
+            <!--v-for="article in filteredList.slice((i - 1) * 3, i * 3)"-->
         </div>
     </section>
 
     <section v-if="currentPage === 'connexion'" id="connexion">
-        <div v-if="error.message!=''" class="alert alert-danger" role="alert">
-            <strong>{{ error.message }}</strong>
-        </div>
-
-        <div v-if="success.message!=''" class="alert alert-success" role="alert">
-            <strong>{{ success.message }}</strong>
-        </div>
-
         <connexion-form
                 v-on:connexion="connexion($event)">
         </connexion-form>
     </section>
-    <section v-if="currentPage === 'inscription'" id="inscription">
-        <div v-if="error.message!=''" class="alert alert-danger" role="alert">
-            <strong>{{ error.message }}</strong>
-        </div>
 
-        <div v-if="success.message!=''" class="alert alert-success" role="alert">
-            <strong>{{ success.message }}</strong>
-        </div>
+    <section v-if="currentPage === 'inscription'" id="inscription">
         <inscription-form
                 v-on:inscriptionuser="inscriptionuser($event)"
         >

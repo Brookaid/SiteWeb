@@ -1,11 +1,11 @@
 var express = require('express')
 var router = express.Router()
-const bcrypt = require('bcrypt')
+//const bcrypt = require('bcrypt')
 const listArticles = require('../db/articles.json')
 const users = require('../db/users.json')
 const fs = require('fs')
 
-const USERS_PATH = 'db/users.json'
+const USERS_PATH = '../db/users.json'
 
 
 /* GET home page. */
@@ -43,7 +43,7 @@ router.post('/delete', (req, res) => {
 
 /*router.get('/us', (req, res) => {
     res.json(users);
-})  --> it was in order to test */
+})*/
 
 router.get('/user', (req, res, next) => {
     console.log(req.session.user)
@@ -54,6 +54,7 @@ router.get('/user', (req, res, next) => {
 router.get('/logout', (req, res, next) => {
     req.session.destroy(function (err) {
         res.status(200).send('Déconnexion')
+
     })
 })
 router.post('/login', (req, res, next) => {
@@ -76,7 +77,7 @@ router.post('/login', (req, res, next) => {
         const currentUser = users[i]
         //console.log(currentUser);
         if (currentUser.username === inputUser.username) {
-            if (bcrypt.compareSync(inputUser.password, currentUser.password)) {
+            if (inputUser.password === currentUser.password) {
                 // Passwords match
                 user = currentUser
                 break
@@ -113,9 +114,9 @@ router.post('/register', (req, res, next) => {
 
     if (message === 'Votre inscription s\'est bien déroulée') {
 
-        let hash = bcrypt.hashSync(req.body.password, 10)
+        let mdp = req.body.password
         // Store hash in database
-        const userObject = {username: req.body.username, password: hash}
+        const userObject = {username: req.body.username, password: mdp}
         users.push(userObject)
 
         // Write into Json File

@@ -32,13 +32,19 @@
 		</ul>
 		<ul class="navbar-nav ml-auto" >
 		    <li>
+		         <button @click="$emit('change-page', 'addArticles')">Ajouter des Articles </button></li>
+            </li>
+		    <li>
 		        <button v-if= "mon_user ===''"@click="$emit('change-page','register')">Inscription</button>
             </li>
 		   <li>
                 <!--<button onclick="document.getElementById('id01').style.display='block'">Login</button>-->
                 <button v-if= "mon_user ===''"@click="$emit('change-page','connexion')">Login</button>
+                <li v-if ="mon_user!=''">
+                	<button  @click="$emit('logout')">Se déconnecter</button>
+				</li>
                 <li v-if ="mon_user!=''" class="user-icon">
-                       <span class="glyphicon glyphicon-user"> {{ mon_user.username }}</span >
+                       {{ mon_user.username }} 
                 </li>
 		   </li>
 		</ul>

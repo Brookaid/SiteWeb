@@ -53,23 +53,18 @@
 		props: ['articleitem'],
 		template: `
   
-      <div><div class="col-lg-6">
+      <div class="col-lg-6">
           <div class="thumbnail">
-           <h1>Titre : <input v-model="articlemodif.Title"> </h1>
-           <h2>Image (web) : <input v-model="articlemodif.Poster"> </h2>
-           <h4 align="center" > Year : <input type="number" v-model="articlemodif.Year"></h4>
-           <h4>Plot :</h4>
-           <textarea v-model="articlemodif.Plot" cols="30" rows="5" > </textarea>
-            <p><b>Realeased : </b> <input type="text" v-model="articlemodif.Released"></p>
-            <p><b>Actors : </b><input type="text" v-model="articlemodif.Actors"> </p>
-            <p><b>Awards : </b><input type="text" v-model="articlemodif.Awards"> </p>
-            <p><b>Runtime : </b><input type="text" v-model="articlemodif.Runtime"> </p>
-            <p><b>Rating : </b><input type="number" v-model="articlemodif.imdbRating"></p>
+           <h1>Titre : <input v-model="articlemodif.titre"> </h1>
+           <h2>Photo (web) : <input v-model="articlemodif.photo"> </h2>
+           <h4 align="center" > Championnat: <input type="texte" v-model="articlemodif.categorie"></h4>
+           <h4>Biographie:</h4>
+           <textarea v-model="articlemodif.texte" cols="30" rows="5" > </textarea>
          </div>
      </div>
           
-          <div class="col-lg-6">
-          <div class="thumbnail">
+      <div class="col-lg-6">
+        <div class="thumbnail">
           <h1 align="center">{{ articlemodif.titre }}</h1>
           <h4 align="center" >{{ articlemodif.categorie }} </h4>
               <img :src= "articlemodif.photo" alt="...">
@@ -79,7 +74,7 @@
           </div>
           <a @click="$emit('modify-article', articlemodif)" class="btn btn-primary" role="button">Edit</a>
           <a @click="$emit('change-page', 'listeDesArticles')" class="btn btn-default" role="button">Annuler</a>
-      </div>
+        </div>
       </div>
       `,
 		data: function () {

@@ -8,7 +8,7 @@ app = new Vue({
             filter: '',
             menu: '',
             name: 'Mes couilles en short',
-            articlesList: '',
+            articlesList: [],
             mon_user: '',
             search: '',
             error: {message: ''},
@@ -20,6 +20,7 @@ app = new Vue({
                 .then(list => {
                     console.log('affichage de ma liste', list)
                     this.articlesList = list.data
+                    console.log(this.articlesList);
                 })
                 .catch(err => {
                     console.log('error', err)
@@ -132,7 +133,7 @@ app = new Vue({
               logout () {
                 this.$http.get('/logout').then(() => {
                     this.mon_user = ''
-                    this.changePage('index')
+                    this.changePage('accueil')
                     alert('Vous êtes déconnecté')
                 })
               },
