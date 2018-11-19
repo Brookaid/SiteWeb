@@ -20,38 +20,55 @@
           v-on:change-page="changePage($event)"
           v-bind:mon_user="mon_user"
           v-on:logout="logout($event)"
-          v-bind:articleslist="articlesList"
+          v-on:register="currentPage = 'register'"
 
       >
       </navbar>
 
-      <!--lightbox login -->
-      <div id="id01" class="modal-test">
-          <span onclick="document.getElementById('id01').style.display='none'"
-            class="close" title="Close Modal">&times;</span>
-          <!-- Modal Content -->
-          <form class="modal-content animate" action="">
-              <div class="container">
-                  <label for="uname"><b>Pseudonyme</b></label>
-                  <input type="text" placeholder="Entrez Pseudonyme" name="uname" required>
+    <section v-if="currentPage === 'accueil'" id="accueil">
+          <accueil
+                v-bind:articleslist="articlesList"
+                v-bind:mon_user="mon_user"
+          >
+          </accueil>
+	</section>
+    <section v-else-if="currentPage === 'ligue1'" id="ligue1">
+          <ligue1
+                v-bind:articleslist="articlesList"
+                v-bind:mon_user="mon_user"
+          >
+          </ligue1>
+	</section>
+	<section v-else-if="currentPage === 'pl'" id="pl">
+          <pl
+                v-bind:articleslist="articlesList"
+                v-bind:mon_user="mon_user"
+          >
+          </pl>
+	</section>
+	<section v-else-if="currentPage === 'bundes'" id="Bundes">
+          <bundes
+               v-bind:articleslist="articlesList"
+               v-bind:mon_user="mon_user"
+          >
+          </bundes>
+	</section>
 
-                  <label for="psw"><b>Mot de passe</b></label>
-                  <input type="password" placeholder="Entrez Mot de passe" name="psw" required>
+    <section v-else-if="currentPage === 'liga'" id="liga">
+          <liga
+               v-bind:articleslist="articlesList"
+               v-bind:mon_user="mon_user"
+          >
+          </liga>
+	</section>
 
-                  <button type="submit">S'identifier</button>
-                  <label>
-                      <input type="checkbox" checked="checked" name="remember"> Se souvenir de moi
-                  </label>
-              </div>
+    <section v-if="currentPage === 'connexion'" id="connexion">
+        <connexion-form
+                v-on:connexion="connexion($event)">
+        </connexion-form>
+    </section>
 
-              <div class="container" style="background-color:#f1f1f1">
-                  <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Annuler</button>
-                  <span class="psw"><a onclick="document.getElementById('id01').style.display='none'" href="#" v-on:click="currentPage = 'register'">Pas encore inscrit(e) ?</a></span>
-              </div>
-          </form>
-      </div>
-
-     <section v-if="currentPage === 'viewArticle'" id="viewArticle">
+    <section v-if="currentPage === 'viewArticle'" id="viewArticle">
         <article-view
                 v-bind:articleitem="ArticlesList[currentArticleId]"
                 v-on:change-page="changePage($event)"
@@ -76,74 +93,12 @@
         >
         </article-edit>
     </section>
-
-    <section v-if="currentPage === 'accueil'" id="accueil">
-          <accueil
-                v-bind:articleslist="articlesList"
-          >
-          </accueil>
-	</section>
-    <section v-else-if="currentPage === 'ligue1'" id="ligue1">
-          <ligue1
-                v-bind:articleslist="articlesList"
-          >
-          </ligue1>
-	</section>
-	<section v-else-if="currentPage === 'pl'" id="pl">
-          <pl
-                v-bind:articleslist="articlesList"
-          >
-          </pl>
-	</section>
-	<section v-else-if="currentPage === 'bundes'" id="Bundes">
-          <bundes
-               v-bind:articleslist="articlesList"
-          >
-          </bundes>
-	</section>
-
-    <section v-else-if="currentPage === 'liga'" id="liga">
-          <liga
-               v-bind:articleslist="articlesList"
-          >
-          </liga>
-	</section>
-
-    <section v-else-if="currentPage === 'register'" id="register">
-          <register></register>
-	</section>
-
-    <section v-else-if="currentPage === 'listeDesArticles' || currentPage === 'accueil'" id="listeDesArticles">
-        <div class="form-group">
-            <input v-model="search" type="text" class="form-control" placeholder="Search">
-        </div>
-        <div class="row" v-for="i in Math.ceil(filteredList.length / 3)">
-            <article-item
-                    v-for="article in filteredList.slice((i - 1) * 3, i * 3)"
-                    v-bind:articleitem="article"
-                    v-bind:mon_user="mon_user"
-                    v-on:event-article="viewArticle(article.index)"
-                    v-on:edit-article="editArticle(article.index)"
-                    v-on:delete-article="deleteArticle(article)"
-                    v-on:logout="logout($event)"
-            >
-            </article-item>
-            <!--v-for="article in filteredList.slice((i - 1) * 3, i * 3)"-->
-        </div>
-    </section>
-
-    <section v-if="currentPage === 'connexion'" id="connexion">
-        <connexion-form
-                v-on:connexion="connexion($event)">
-        </connexion-form>
-    </section>
-
-    <section v-if="currentPage === 'inscription'" id="inscription">
-        <inscription-form
+      <section v-if="currentPage === 'register'" id="register" >
+        <register
                 v-on:inscriptionuser="inscriptionuser($event)"
         >
-        </inscription-form>
-    </section>
+        </register>
+      </section>
   </main>
 
 

@@ -32,7 +32,7 @@
 		</ul>
 		<ul class="navbar-nav ml-auto" >
 		    <li>
-		         <button @click="$emit('change-page', 'addArticles')">Ajouter des Articles </button></li>
+		         <button v-if ="mon_user!=''" @click="$emit('change-page', 'addArticle')">Ajouter des Articles </button></li>
             </li>
 		    <li>
 		        <button v-if= "mon_user ===''"@click="$emit('change-page','register')">Inscription</button>
@@ -43,7 +43,7 @@
                 <li v-if ="mon_user!=''">
                 	<button  @click="$emit('logout')">Se déconnecter</button>
 				</li>
-                <li v-if ="mon_user!=''" class="user-icon">
+                <li v-if ="mon_user!=''" class="user-name">
                        {{ mon_user.username }} 
                 </li>
 		   </li>

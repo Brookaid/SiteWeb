@@ -37,8 +37,19 @@ body .article {
     font-family: FastForward;
     src: url('FastForward.ttf');
 }
-.user-icon{
-    margin: 5px;
-    margin-top: 15px;
+.user-name{
+    margin-top: 5%;
     margin-left: 10px;
+}
+.edit{
+    background-color: #0e8c8c;
+    width: 20%;
+}
+
+.suppr{
+    background-color: #8c0615;
+    width: 20%;
+}
+.list-option{
+    list-style: none;
 }

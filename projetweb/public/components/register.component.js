@@ -47,30 +47,23 @@ Vue.component('register', {
   })
 Vue.component('connexion-form', {
 			template: `
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
+                    <div class="outer-div">
+    					<div class="inner-div">
                             <h1 class="modal-title">Connexion </h1>
                         </div>
                         <div class="panel-body">
-                            <form>
-                                <div class="form-row">
-                                    <div class="form-group col-md-12">
+                            <form action="" style="border:1px solid #ccc">
                                         <label>Login</label>
                                         <input v-model ="user.username" type="text" placeholder="Login">
-                                    </div>
-                                    <div class="form-group col-md-12">
                                         <label>Mot de passe</label>
                                         <input v-model ="user.password" type="password" placeholder="Mot de passe">
-                                    </div>
-                                </div>
-                
                             </form>
                             <div class="form-row">
                                 <div class="form-group col-md-12">
                                     <button @click="$emit('connexion', user)" class="btn btn-primary">Connexion</button>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
     
     `,

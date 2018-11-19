@@ -18,9 +18,7 @@ app = new Vue({
           created() {
 		    this.$http.get('/list')
                 .then(list => {
-                    console.log('affichage de ma liste', list)
                     this.articlesList = list.data
-                    console.log(this.articlesList);
                 })
                 .catch(err => {
                     console.log('error', err)
@@ -28,7 +26,6 @@ app = new Vue({
 
             this.$http.get('/user')
                 .then(user => {
-                    console.log('affichage de mon  user ', user)
                     this.mon_user = user.data
                 })
                 .catch(err => {

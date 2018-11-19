@@ -83,37 +83,43 @@
 			}
 		}
 	})
+
 	Vue.component('article-add', {
 		template: `
-      <div>
-      <div class="col-lg-6">
-          <div class="thumbnail">
-           <h1>Titre : <input v-model="articleitem.titre"> </h1>
-           <h2>Photo (web) : <input v-model="articleitem.photo"> </h2>
-           <h4 align="center" > Championnat : <input type="number" v-model="articleitem.categorie"></h4>
-           <h4>Biographie:</h4>
-           <textarea v-model="articleitem.texte" cols="30" rows="5" > </textarea>
-         </div>
-     </div>
-          
-          <div class="col-lg-6">
-          <div class="thumbnail">
-          <h1 align="center">{{ articleitem.titre}}</h1>
-          <h4 align="center" >{{ articleitem.categorie}} </h4>
-              <img :src= "articleitem.photo" alt="...">
-              <div class="caption">
-                  <p><b>Bio : </b>{{ articleitem.texte }}</p>
+              <div>
+              <div class="col-lg-6">
+              <form action="" style="border:1px solid #ccc">
+                  <div class="thumbnail">
+                   <label for="titre"><b>Titre:</b></label> 
+                   <input type="text" v-model="articleitem.titre" required>
+                   <label for="photo"><b>Photo(URL):</b></label>
+                   <input type="text" v-model="articleitem.photo" required>
+                   <label for="championnat"><b>Championnat :</b></label>
+                       <select v-model="articleitem.categorie" required>
+                          <option value="L1">Ligue 1</option>
+                          <option value="PL">Premier League</option>
+                          <option value="BL">Bundesliga</option>
+                          <option value="LIGA">Liga BBVA</option>
+                       </select>
+                       <br>
+                   <label for="bio"><b>Biographie :</b></label>
+                   <textarea v-model="articleitem.texte" cols="70" rows="5" required> </textarea>
+                 </div>
+              </form>
               </div>
-          </div>
-          <a @click="$emit('change-page', 'listeDesArticles')" class="btn btn-default" role="button">Annuler</a>
-          <a @click="$emit('create-article', articleitem)" class="btn btn-primary" role="button">Ajouter</a>
-      </div>
-      </div>
+              <div>
+                  <img :src= "articleitem.photo" alt="...">
+              </div>
+              <button @click="$emit('change-page', 'listeDesArticles')" class="btn btn-default"> Annuler</button>
+              <button @click="$emit('create-article', articleitem)" class="btn btn-primary"> Ajouter</button>
+              
+              
       `,
 		data: function () {
 			return {
 				articleitem: {
 					'titre': '',
+					'categorie': '',
 					'photo': '',
 					'texte': '',
 				}
@@ -122,22 +128,21 @@
 
 	})
 
-	Vue.component('footer-item', {
+	/*Vue.component('footer-item', {
 		template: `
      <div class="text-center">
         <a @click="$emit('change-page', 'index')"  class="btn btn-default" >Page d'accueil</a>
      </div>
     `
-	})
+	})*/
 
-	Vue.component('ajouter-article-form', {
+	/*Vue.component('ajouter-article-form', {
 		props: ['mon_user'],
 		template: `
     <div class="col-lg-12" align="right">
 		  <p v-if ="mon_user!=''"><a @click="$emit('change-page', 'addArticle')"  class="btn btn-info" >Ajouter une wags</a></p>
     </div>
     `
-
-	})
+*/
 
 })()
