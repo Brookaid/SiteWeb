@@ -5,12 +5,9 @@ app = new Vue({
 		  data: {
 			currentPage: 'accueil',
 			currentArticleId: '',
-            filter: '',
-            menu: '',
-            name: 'Mes couilles en short',
+            name: 'Mes wags en short',
             articlesList: [],
             mon_user: '',
-            search: '',
             error: {message: ''},
             success: {message: ''}
 
@@ -36,22 +33,10 @@ app = new Vue({
 
           },
           methods: {
-              /*close: function () {
-                  this.success = false
-              },*/
               changePage(page) {
                   this.currentPage = page
               },
-
-              // Articles
-              viewArticle(indexArticle) {
-                  this.currentArticleId = indexArticle
-                  this.changePage('viewArticle')
-              },
-              editArticle(indexArticle) {
-                  this.currentarticleId = indexArticle
-                  this.changePage('editArticle')
-              },
+              /* Articles */
               createArticle(article) {
                   if (article.titre == '') {
                       alert('Veuillez indiquer le titre')
@@ -61,61 +46,67 @@ app = new Vue({
                       this.$http.post('/add', article)
                           .then(() => {
                               this.articlesList.push(article)
-                              this.changePage('listeDesArticles')
+                              this.changePage('accueil')
                               alert('Votre article a bien été créé')
                               document.location.reload(true)
                           })
                   }
               },
-              deleteArticle(article) {
-                  if (confirm('Êtes vous sûr de vouloir supprimer cet article ?')) {
-                      this.$http.post('/delete', article)
+              delArticle(indexArticle) {
+                  this.currentArticleId= indexArticle
+                  this.changePage('delArticle')
+              },
+              deleteArticle(Article) {
+                  if (confirm('Supprimer cet article sera definitif')) {
+                      this.$http.post('/delete', Article)
                           .then(() => {
-                              this.articlesList.splice(article.index, 1)
+                              this.articlesList.splice(Article.index, 1)
                               for (let i = 0; i < this.articlesList.length; i++) {
                                   this.articlesList[i].index = i
                               }
-                              alert('Votre article a bien été supprimé')
-                              this.changePage('listeDesArticles')
+                              alert('Article supprimé')
+                              this.changePage('accueil')
                               document.location.reload(true)
                           })
                   }
 
               },
-
+              editArticle(indexArticle) {
+                  this.currentArticleId= indexArticle
+                  this.changePage('editArticle')
+              },
               modifyArticle(article) {
 
                   console.log(article)
 
                   if (article.titre == '') {
-                      alert('Veuillez indiquer le titre')
+                      alert('Titre manquant')
                   }
                   else {
                       this.$http.post('/edit', article)
                           .then(() => {
                               this.articlesList[article.index] = article
-                              this.changePage('listeDesarticles')
-                              alert('Votre article a bien été modifié')
+                              this.changePage('accueil')
+                              alert('Article bien modifié')
                               document.location.reload(true)
                           })
                   }
               },
 
-              // User
+              /* User */
               inscriptionuser (user) {
                 if (user.password != '' && user.password === user.repeatpassword && user.username != '') {
                     this.$http.post('/register', user)
                         .then((req) => {
-
-                            //alert(req.data);
                             if (req.status === 200) {
                                 alert(req.data)
                                 this.success.message = req.data
-                                this.changePage('listeDesArticles')
+                                this.changePage('accueil')
                             }
                             else {
                                 this.error.message = req.data
-                                this.changePage('inscription')
+                                this.changePage('register')
+                                alert('Erreur veuillez reessayer')
                             }
                         }).catch(error => {
                         console.log(error)
@@ -123,15 +114,14 @@ app = new Vue({
                     })
                 }
                 else {
-                    this.error.message = 'Le mot de passe n\'est pas identique ou les champs sont vides !'
-                    //alert("Le mot de passe n'est pas identique ou les champs sont vides !")
+                    this.error.message = 'Verifiez les champs !'
                 }
               },
               logout () {
                 this.$http.get('/logout').then(() => {
                     this.mon_user = ''
                     this.changePage('accueil')
-                    alert('Vous êtes déconnecté')
+                    alert('Vous vous êtes déconnecté')
                 })
               },
               connexion (user) {
@@ -147,7 +137,7 @@ app = new Vue({
                                 this.success.message = response.data
                                 document.location.reload(true)
 
-                                this.changePage('listeDesArticles')
+                                this.changePage('accueil')
                             } else {
                                 this.error.message = response.data
                                 this.changePage('connexion')
@@ -158,8 +148,7 @@ app = new Vue({
                     })
                 }
                 else {
-                    this.error.message = 'Le ou les champs sont vides !'
-                    //alert("Le ou les champs sont vides !")
+                    this.error.message = 'Le(s) champs sont vides !'
                 }
               }
           },

@@ -45,7 +45,7 @@ Vue.component('register', {
 			}
 		},
   })
-Vue.component('connexion-form', {
+Vue.component('connexion', {
 			template: `
                     <div class="outer-div">
     					<div class="inner-div">

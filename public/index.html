@@ -6,7 +6,7 @@
       <link rel="stylesheet" href="stylesheets/stylesheet.css">
       <link rel="stylesheet" href="stylesheets/style.css">
       <script src="https://npmcdn.com/axios/dist/axios.min.js"></script>
-      <title>Mes couilles en short</title>
+      <title>Mes wags en short</title>
   </head>
   <body>
   <main id="app">
@@ -29,6 +29,8 @@
           <accueil
                 v-bind:articleslist="articlesList"
                 v-bind:mon_user="mon_user"
+                v-on:change-page="changePage($event)"
+                v-on:delete-article="deleteArticle(articlesList[currentArticleId])"
           >
           </accueil>
 	</section>
@@ -36,6 +38,8 @@
           <ligue1
                 v-bind:articleslist="articlesList"
                 v-bind:mon_user="mon_user"
+                v-on:change-page="changePage($event)"
+                v-on:delete-article="deleteArticle(articlesList[currentArticleId])"
           >
           </ligue1>
 	</section>
@@ -43,6 +47,8 @@
           <pl
                 v-bind:articleslist="articlesList"
                 v-bind:mon_user="mon_user"
+                v-on:change-page="changePage($event)"
+                v-on:delete-article="deleteArticle(articlesList[currentArticleId])"
           >
           </pl>
 	</section>
@@ -50,6 +56,8 @@
           <bundes
                v-bind:articleslist="articlesList"
                v-bind:mon_user="mon_user"
+               v-on:change-page="changePage($event)"
+               v-on:delete-article="deleteArticle(articlesList[currentArticleId])"
           >
           </bundes>
 	</section>
@@ -58,24 +66,16 @@
           <liga
                v-bind:articleslist="articlesList"
                v-bind:mon_user="mon_user"
+               v-on:change-page="changePage($event)"
+               v-on:delete-article="deleteArticle(articlesList[currentArticleId])"
           >
           </liga>
 	</section>
 
     <section v-if="currentPage === 'connexion'" id="connexion">
-        <connexion-form
+        <connexion
                 v-on:connexion="connexion($event)">
-        </connexion-form>
-    </section>
-
-    <section v-if="currentPage === 'viewArticle'" id="viewArticle">
-        <article-view
-                v-bind:articleitem="ArticlesList[currentArticleId]"
-                v-on:change-page="changePage($event)"
-                v-bind:mon_user="mon_user"
-                v-on:delete-article="deleteArticle(articlesList[currentArticleId])"
-        >
-        </article-view>
+        </connexion>
     </section>
 
     <section v-if="currentPage === 'addArticle'" id="addArticle">
@@ -87,18 +87,34 @@
     </section>
     <section v-if="currentPage === 'editArticle'" id="editArticle">
         <article-edit
-                v-bind:articleitem="articlesList[currentArticleId]"
+                v-bind:article="articlesList[currentArticleId]"
                 v-on:change-page="changePage($event)"
                 v-on:modify-article="modifyArticle($event)"
         >
         </article-edit>
     </section>
-      <section v-if="currentPage === 'register'" id="register" >
+    <section v-if="currentPage === 'delArticle'" id="delArticle">
+        <del-article
+                v-bind:article="articlesList[currentArticleId]"
+                v-on:change-page="changePage($event)"
+                v-on:delete-article="deleteArticle($event)"
+        >
+        </del-article>
+    </section>
+    <section v-if="currentPage === 'register'" id="register" >
         <register
                 v-on:inscriptionuser="inscriptionuser($event)"
         >
         </register>
-      </section>
+    </section>
+    <section v-if="currentPage === 'settings'" id="settings" >
+        <settings
+                v-on:change-page="changePage($event)"
+                v-on:delete-article="deleteArticle(articlesList[currentArticleId])"
+        >
+        </settings>
+    </section>
+
   </main>
 
 
@@ -109,15 +125,5 @@
   <script src="components/other.component.js"></script>
   <script src="components/register.component.js"></script>
   <script src="indexJS.js"></script>
-  <!--<script>
-        var modal = document.getElementById('id01');
-
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-  </script>-->
   </body>
 </html>

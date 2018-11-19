@@ -1,8 +1,6 @@
 ;(function () {
   'use strict'
 
-
-
 const templateaccueil = ` 
  <section id="accueil">
   
@@ -19,7 +17,9 @@ const templateaccueil = `
                 <br>
                 <li class="list-option" v-if ="mon_user!=''">
                     <button @click="$emit('change-page', 'editArticle')" class="edit">Editer </button>   
-                    <button @click="$emit('delete-article', 'deleteArticle','article.index')" class="suppr">Supprimer </button>
+                    <button @click="$emit('change-page','delArticle')" class="suppr">Supprimer </button>
+                    <br>
+                    <i>Problème de gestion du currentId cela ne fonctionne donc pas</i>
                 </li>
              </div>
         </div>
@@ -29,9 +29,9 @@ const templateaccueil = `
 
 Vue.component('accueil', {
     props:['articleslist','mon_user'],
-    template: templateaccueil
+    template: templateaccueil,
 
-  })
+})
 
 const templatepl = ` 
  <section id="pl">
